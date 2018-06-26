@@ -1,0 +1,41 @@
+{
+    "kind": "ReplicationController",
+    "apiVersion": "v1",
+    "metadata": {
+        "name": "logservice",
+        "labels": {
+            "app": "logservice"
+        }
+    },
+    "spec": {
+        "replicas": 1,
+        "selector": {
+            "app": "logservice"
+        },
+        "template": {
+            "metadata": {
+                "labels": {
+                    "app": "logservice"
+                }
+            },
+            "spec": {
+                "containers": [
+                    {
+                        "name": "logservice",
+                        "image": "wison27/logservice",
+                        "ports": [
+                            {
+                                "name": "http-server",
+                                "containerPort": 5601
+                            },
+                            {
+                                "name": "elastic",
+                                "containerPort": 9200
+                            }
+                        ]
+                    }
+                ]
+            }
+        }
+    }
+}
